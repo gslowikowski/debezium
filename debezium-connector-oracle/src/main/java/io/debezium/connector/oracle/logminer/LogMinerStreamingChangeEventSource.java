@@ -7,9 +7,9 @@ package io.debezium.connector.oracle.logminer;
 
 import static io.debezium.connector.oracle.logminer.LogMinerHelper.buildDataDictionary;
 import static io.debezium.connector.oracle.logminer.LogMinerHelper.checkSupplementalLogging;
-import static io.debezium.connector.oracle.logminer.LogMinerHelper.createFlushTable;
+//import static io.debezium.connector.oracle.logminer.LogMinerHelper.createFlushTable;
 import static io.debezium.connector.oracle.logminer.LogMinerHelper.endMining;
-import static io.debezium.connector.oracle.logminer.LogMinerHelper.flushLogWriter;
+//import static io.debezium.connector.oracle.logminer.LogMinerHelper.flushLogWriter;
 import static io.debezium.connector.oracle.logminer.LogMinerHelper.getEndScn;
 import static io.debezium.connector.oracle.logminer.LogMinerHelper.getFirstOnlineLogScn;
 import static io.debezium.connector.oracle.logminer.LogMinerHelper.getLastScnToAbandon;
@@ -124,7 +124,7 @@ public class LogMinerStreamingChangeEventSource implements StreamingChangeEventS
                 transactionalBuffer.setDatabaseTimeDifference(databaseTimeMs);
 
                 startScn = offsetContext.getScn();
-                createFlushTable(jdbcConnection);
+//                createFlushTable(jdbcConnection);
 
                 if (!isContinuousMining && startScn.compareTo(getFirstOnlineLogScn(jdbcConnection, archiveLogRetention)) < 0) {
                     throw new DebeziumException(
@@ -155,7 +155,7 @@ public class LogMinerStreamingChangeEventSource implements StreamingChangeEventS
                         while (context.isRunning()) {
                             Instant start = Instant.now();
                             endScn = getEndScn(jdbcConnection, startScn, streamingMetrics, connectorConfig.getLogMiningBatchSizeDefault());
-                            flushLogWriter(jdbcConnection, jdbcConfiguration, isRac, racHosts);
+//                            flushLogWriter(jdbcConnection, jdbcConfiguration, isRac, racHosts);
 
                             if (hasLogSwitchOccurred()) {
                                 // This is the way to mitigate PGA leaks.

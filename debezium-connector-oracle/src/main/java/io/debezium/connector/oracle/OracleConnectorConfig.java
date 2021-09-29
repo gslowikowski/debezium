@@ -29,7 +29,7 @@ import io.debezium.connector.AbstractSourceInfo;
 import io.debezium.connector.SourceInfoStructMaker;
 import io.debezium.connector.oracle.logminer.HistoryRecorder;
 import io.debezium.connector.oracle.logminer.NeverHistoryRecorder;
-import io.debezium.connector.oracle.logminer.SqlUtils;
+//import io.debezium.connector.oracle.logminer.SqlUtils;
 import io.debezium.connector.oracle.xstream.LcrPosition;
 import io.debezium.document.Document;
 import io.debezium.jdbc.JdbcConfiguration;
@@ -739,8 +739,9 @@ public class OracleConnectorConfig extends HistorizedRelationalDatabaseConnector
         }
 
         private boolean isFlushTable(TableId id) {
-            final String schema = config.getString(USER);
-            return id.table().equalsIgnoreCase(SqlUtils.LOGMNR_FLUSH_TABLE) && id.schema().equalsIgnoreCase(schema);
+            return false; //GS
+//            final String schema = config.getString(USER);
+//            return id.table().equalsIgnoreCase(SqlUtils.LOGMNR_FLUSH_TABLE) && id.schema().equalsIgnoreCase(schema);
         }
     }
 

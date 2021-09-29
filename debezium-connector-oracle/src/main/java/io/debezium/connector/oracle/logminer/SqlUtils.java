@@ -75,11 +75,11 @@ public class SqlUtils {
     static final String FILES_FOR_MINING = "SELECT FILENAME AS NAME FROM V$LOGMNR_LOGS";
 
     // log writer flush statements
-    public static final String LOGMNR_FLUSH_TABLE = "LOG_MINING_FLUSH";
-    static final String FLUSH_TABLE_NOT_EMPTY = "SELECT '1' AS ONE FROM " + LOGMNR_FLUSH_TABLE;
-    static final String CREATE_FLUSH_TABLE = "CREATE TABLE " + LOGMNR_FLUSH_TABLE + "(LAST_SCN NUMBER(19,0))";
-    static final String INSERT_FLUSH_TABLE = "INSERT INTO " + LOGMNR_FLUSH_TABLE + " VALUES(0)";
-    static final String UPDATE_FLUSH_TABLE = "UPDATE " + LOGMNR_FLUSH_TABLE + " SET LAST_SCN =";
+//    public static final String LOGMNR_FLUSH_TABLE = "LOG_MINING_FLUSH";
+//    static final String FLUSH_TABLE_NOT_EMPTY = "SELECT '1' AS ONE FROM " + LOGMNR_FLUSH_TABLE;
+//    static final String CREATE_FLUSH_TABLE = "CREATE TABLE " + LOGMNR_FLUSH_TABLE + "(LAST_SCN NUMBER(19,0))";
+//    static final String INSERT_FLUSH_TABLE = "INSERT INTO " + LOGMNR_FLUSH_TABLE + " VALUES(0)";
+//    static final String UPDATE_FLUSH_TABLE = "UPDATE " + LOGMNR_FLUSH_TABLE + " SET LAST_SCN =";
 
     static final String NLS_SESSION_PARAMETERS = "ALTER SESSION SET "
             + "  NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI:SS'"
@@ -246,7 +246,7 @@ public class SqlUtils {
         // INSERT/UPDATE/DELETE
         query.append("OR ");
         query.append("(OPERATION_CODE IN (1,2,3) ");
-        query.append("AND TABLE_NAME != '").append(LOGMNR_FLUSH_TABLE).append("' ");
+//        query.append("AND TABLE_NAME != '").append(LOGMNR_FLUSH_TABLE).append("' ");
 
         // There are some common schemas that we automatically ignore when building the filter predicates
         // and we pull that same list of schemas in here and apply those exclusions in the generated SQL.
@@ -351,9 +351,9 @@ public class SqlUtils {
         return "BEGIN SYS.DBMS_LOGMNR.REMOVE_LOGFILE(LOGFILENAME => '" + fileName + "');END;";
     }
 
-    static String tableExistsQuery(String tableName) {
-        return "SELECT '1' AS ONE FROM USER_TABLES WHERE TABLE_NAME = '" + tableName + "'";
-    }
+//    static String tableExistsQuery(String tableName) {
+//        return "SELECT '1' AS ONE FROM USER_TABLES WHERE TABLE_NAME = '" + tableName + "'";
+//    }
 
     static String dropTableStatement(String tableName) {
         return "DROP TABLE " + tableName.toUpperCase() + " PURGE";

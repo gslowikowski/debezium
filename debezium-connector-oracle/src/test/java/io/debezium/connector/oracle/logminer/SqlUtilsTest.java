@@ -38,7 +38,7 @@ public class SqlUtilsTest {
             "OPERATION_CODE IN (5,34) AND USERNAME NOT IN ('SYS','SYSTEM','${user}')) " +
             "OR (OPERATION_CODE IN (7,36)) " +
             "OR (OPERATION_CODE IN (1,2,3) " +
-            "AND TABLE_NAME != '" + SqlUtils.LOGMNR_FLUSH_TABLE + "' " +
+//            "AND TABLE_NAME != '" + SqlUtils.LOGMNR_FLUSH_TABLE + "' " +
             "${systemTablePredicate}" +
             "${schemaPredicate}" +
             "${tablePredicate}" +
@@ -246,9 +246,9 @@ public class SqlUtilsTest {
                 " GROUP BY F.GROUP#, L.NEXT_CHANGE#, L.FIRST_CHANGE#, L.STATUS ORDER BY 3";
         assertThat(result).isEqualTo(expected);
 
-        result = SqlUtils.tableExistsQuery("table_name");
-        expected = "SELECT '1' AS ONE FROM USER_TABLES WHERE TABLE_NAME = 'table_name'";
-        assertThat(result).isEqualTo(expected);
+//        result = SqlUtils.tableExistsQuery("table_name");
+//        expected = "SELECT '1' AS ONE FROM USER_TABLES WHERE TABLE_NAME = 'table_name'";
+//        assertThat(result).isEqualTo(expected);
 
         result = SqlUtils.logMiningHistoryDdl("table_name");
         expected = "create  TABLE table_name(" +
