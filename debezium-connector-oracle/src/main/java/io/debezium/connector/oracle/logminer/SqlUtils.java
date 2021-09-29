@@ -355,34 +355,34 @@ public class SqlUtils {
 //        return "SELECT '1' AS ONE FROM USER_TABLES WHERE TABLE_NAME = '" + tableName + "'";
 //    }
 
-    static String dropTableStatement(String tableName) {
-        return "DROP TABLE " + tableName.toUpperCase() + " PURGE";
-    }
+//    static String dropTableStatement(String tableName) {
+//        return "DROP TABLE " + tableName.toUpperCase() + " PURGE";
+//    }
 
     // no constraints, no indexes, minimal info
-    static String logMiningHistoryDdl(String tableName) {
-        return "create  TABLE " + tableName + "(" +
-                "row_sequence NUMBER(19,0), " +
-                "captured_scn NUMBER(19,0), " +
-                "table_name VARCHAR2(30 CHAR), " +
-                "seg_owner VARCHAR2(30 CHAR), " +
-                "operation_code NUMBER(19,0), " +
-                "change_time TIMESTAMP(6), " +
-                // "row_id VARCHAR2(20 CHAR)," +
-                // "session_num NUMBER(19,0)," +
-                // "serial_num NUMBER(19,0)," +
-                "transaction_id VARCHAR2(50 CHAR), " +
-                // "rs_id VARCHAR2(34 CHAR)," +
-                // "ssn NUMBER(19,0)," +
-                "csf NUMBER(19,0), " +
-                "redo_sql VARCHAR2(4000 CHAR)" +
-                // "capture_time TIMESTAMP(6)" +
-                ") nologging";
-    }
+//    static String logMiningHistoryDdl(String tableName) {
+//        return "create  TABLE " + tableName + "(" +
+//                "row_sequence NUMBER(19,0), " +
+//                "captured_scn NUMBER(19,0), " +
+//                "table_name VARCHAR2(30 CHAR), " +
+//                "seg_owner VARCHAR2(30 CHAR), " +
+//                "operation_code NUMBER(19,0), " +
+//                "change_time TIMESTAMP(6), " +
+//                // "row_id VARCHAR2(20 CHAR)," +
+//                // "session_num NUMBER(19,0)," +
+//                // "serial_num NUMBER(19,0)," +
+//                "transaction_id VARCHAR2(50 CHAR), " +
+//                // "rs_id VARCHAR2(34 CHAR)," +
+//                // "ssn NUMBER(19,0)," +
+//                "csf NUMBER(19,0), " +
+//                "redo_sql VARCHAR2(4000 CHAR)" +
+//                // "capture_time TIMESTAMP(6)" +
+//                ") nologging";
+//    }
 
-    static String truncateTableStatement(String tableName) {
-        return "TRUNCATE TABLE " + tableName;
-    }
+//    static String truncateTableStatement(String tableName) {
+//        return "TRUNCATE TABLE " + tableName;
+//    }
 
     /**
      * This method return query which converts given SCN in days and deduct from the current day

@@ -198,9 +198,9 @@ public class SqlUtilsTest {
                 "OPTIONS => DBMS_LOGMNR.DICT_FROM_REDO_LOGS + DBMS_LOGMNR.DDL_DICT_TRACKING  + DBMS_LOGMNR.NO_ROWID_IN_STMT);END;";
         assertThat(result).isEqualTo(expected);
 
-        result = SqlUtils.truncateTableStatement("table_name");
-        expected = "TRUNCATE TABLE table_name";
-        assertThat(result).isEqualTo(expected);
+//        result = SqlUtils.truncateTableStatement("table_name");
+//        expected = "TRUNCATE TABLE table_name";
+//        assertThat(result).isEqualTo(expected);
 
         result = SqlUtils.diffInDaysQuery(Scn.valueOf(123L));
         expected = "select sysdate - CAST(scn_to_timestamp(123) as date) from dual";
@@ -250,19 +250,19 @@ public class SqlUtilsTest {
 //        expected = "SELECT '1' AS ONE FROM USER_TABLES WHERE TABLE_NAME = 'table_name'";
 //        assertThat(result).isEqualTo(expected);
 
-        result = SqlUtils.logMiningHistoryDdl("table_name");
-        expected = "create  TABLE table_name(" +
-                "row_sequence NUMBER(19,0), " +
-                "captured_scn NUMBER(19,0), " +
-                "table_name VARCHAR2(30 CHAR), " +
-                "seg_owner VARCHAR2(30 CHAR), " +
-                "operation_code NUMBER(19,0), " +
-                "change_time TIMESTAMP(6), " +
-                "transaction_id VARCHAR2(50 CHAR), " +
-                "csf NUMBER(19,0), " +
-                "redo_sql VARCHAR2(4000 CHAR)" +
-                ") nologging";
-        assertThat(result).isEqualTo(expected);
+//        result = SqlUtils.logMiningHistoryDdl("table_name");
+//        expected = "create  TABLE table_name(" +
+//                "row_sequence NUMBER(19,0), " +
+//                "captured_scn NUMBER(19,0), " +
+//                "table_name VARCHAR2(30 CHAR), " +
+//                "seg_owner VARCHAR2(30 CHAR), " +
+//                "operation_code NUMBER(19,0), " +
+//                "change_time TIMESTAMP(6), " +
+//                "transaction_id VARCHAR2(50 CHAR), " +
+//                "csf NUMBER(19,0), " +
+//                "redo_sql VARCHAR2(4000 CHAR)" +
+//                ") nologging";
+//        assertThat(result).isEqualTo(expected);
 
         result = SqlUtils.archiveLogsQuery(Scn.valueOf(10L), Duration.ofHours(0L));
         expected = "SELECT NAME AS FILE_NAME, NEXT_CHANGE# AS NEXT_CHANGE, FIRST_CHANGE# AS FIRST_CHANGE FROM V$ARCHIVED_LOG " +
@@ -285,9 +285,9 @@ public class SqlUtilsTest {
         expected = "BEGIN SYS.DBMS_LOGMNR.REMOVE_LOGFILE(LOGFILENAME => 'file_name');END;";
         assertThat(result).isEqualTo(expected);
 
-        result = SqlUtils.dropTableStatement("table_name");
-        expected = "DROP TABLE TABLE_NAME PURGE";
-        assertThat(result).isEqualTo(expected);
+//        result = SqlUtils.dropTableStatement("table_name");
+//        expected = "DROP TABLE TABLE_NAME PURGE";
+//        assertThat(result).isEqualTo(expected);
 
     }
 
